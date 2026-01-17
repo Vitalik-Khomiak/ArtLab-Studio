@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <nav>
+        <div class="nav-left">
+            <div class="logo-img"></div>
+            <div class="logo-text">
+                <div class="logo-title">ArtLab Studio</div>
+                <div class="logo-subtitle">3D Artist & Designer</div>
+            </div>
+        </div>
+
+        <div class="nav-center">
+            <a href="#home" class="nav-link active">Головна</a>
+            <a href="#projects" class="nav-link">Проекти</a>
+            <a href="#about" class="nav-link">Хто я?</a>
+            <a href="#blog" class="nav-link placeholder-link">Блог</a>
+        </div>
+
+        <div class="nav-right">
+            <button class="btn btn-primary placeholder-btn">Зворотній зв'язок</button>
+        </div>
+    </nav>
+
+    <main id="home">
+        <header class="page-header">
+            <h1>Проекти</h1>
+            <p>Колекція моїх 3D робіт та експериментів.</p>
+        </header>
+
+        <section id="projects" class="projects-grid">
+            <!-- Project Card 1 -->
+            <article class="project-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h2>Project Alpha</h2>
+                    <p>High-fidelity character model for game engine integration.</p>
+                    <div class="tags">
+                        <span>Blender</span>
+                        <span>ZBrush</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project Card 2 -->
+            <article class="project-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h2>Environment Concept</h2>
+                    <p>Sci-fi landscape utilization procedural generation techniques.</p>
+                    <div class="tags">
+                        <span>Unreal Engine 5</span>
+                        <span>Substance</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project Card 3 -->
+            <article class="project-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h2>Hard Surface Prop</h2>
+                    <p>Detailed industrial machinery asset.</p>
+                    <div class="tags">
+                        <span>Maya</span>
+                        <span>Marmoset</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Project Card 4 -->
+            <article class="project-card">
+                <div class="card-image"></div>
+                <div class="card-content">
+                    <h2>Animation Test</h2>
+                    <p>Rigging and animation study of a quadruped mech.</p>
+                    <div class="tags">
+                        <span>Blender</span>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <section id="about" class="about-section">
+            <header class="section-header">
+                <h2>Хто я?</h2>
+                <p>CG Generalist • 3D Artist • Designer</p>
+            </header>
+
+            <div class="bento-grid">
+                <!-- Profile Card -->
+                <div class="bento-card profile-card">
+                    <div class="profile-img"></div>
+                    <h3>ArtLab</h3>
+                    <p>Cg generalist from Lviv 🎬✨</p>
+                    <div class="location">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        Lviv, Ukraine
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <a href="https://www.instagram.com/Artlaab/" target="_blank" class="bento-card social-card instagram">
+                    <div class="icon">📸</div>
+                    <span>Instagram</span>
+                </a>
+
+                <a href="https://www.youtube.com/channel/UCVhLrdv1hH90Zv1w7N01vHg" target="_blank"
+                    class="bento-card social-card youtube">
+                    <div class="icon">▶️</div>
+                    <span>YouTube</span>
+                </a>
+
+                <a href="https://www.tiktok.com/@Artlab06" target="_blank" class="bento-card social-card tiktok">
+                    <div class="icon">🎵</div>
+                    <span>TikTok</span>
+                </a>
+
+                <a href="https://t.me/Nocto_Vision" target="_blank" class="bento-card social-card telegram">
+                    <div class="icon">✈️</div>
+                    <span>Telegram</span>
+                </a>
+
+                <a href="https://cults3d.com/en/users/stlforge_3d/3d-models" target="_blank"
+                    class="bento-card link-card wide">
+                    <div class="card-content">
+                        <h3>3D Printing Models</h3>
+                        <p>Check out my printable models on Cults3D</p>
+                    </div>
+                    <div class="icon-large">🖨️</div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Placeholder Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Скоро буде!</h2>
+            <p>Цей розділ або функція знаходиться в розробці.</p>
+            <button class="btn btn-primary close-modal-btn">Зрозуміло</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 ArtLab Studio. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
