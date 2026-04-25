@@ -58,11 +58,9 @@ nav {
 .logo-img {
     width: 40px;
     height: 40px;
-    background-color: #fff;
     border-radius: 8px;
     /* Slightly rounded square */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23ddd" width="100" height="100"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="40">A</text></svg>');
-    background-size: cover;
+    object-fit: contain;
 }
 
 .logo-text {
@@ -109,7 +107,22 @@ nav {
     cursor: pointer;
     font-size: 0.95rem;
     transition: all 0.3s ease;
-    border: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.btn-outline:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .btn-primary {
@@ -125,6 +138,7 @@ nav {
 }
 
 /* Modal Styles */
+/* Modal Styles - Updated for Gallery */
 .modal {
     display: none;
     position: fixed;
@@ -133,57 +147,40 @@ nav {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
     justify-content: center;
     align-items: center;
 }
 
-.modal-content {
-    background: rgba(20, 25, 40, 0.95);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* Modal Navigation Buttons */
+.modal-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 3rem;
+    color: rgba(255, 255, 255, 0.4);
+    background: transparent;
+    border: none;
     padding: 2rem;
-    border-radius: 16px;
-    text-align: center;
-    max-width: 400px;
-    width: 90%;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    animation: modalPop 0.3s ease-out;
-}
-
-@keyframes modalPop {
-    from {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.close-btn {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
     cursor: pointer;
-    margin-top: -10px;
+    z-index: 1100;
+    user-select: none;
+    transition: all 0.3s ease;
 }
 
-.close-btn:hover {
+.modal-nav-btn:hover {
     color: #fff;
+    transform: translateY(-50%) scale(1.1);
+    text-shadow: 0 0 20px rgba(100, 149, 237, 0.8);
 }
 
-.modal-content h2 {
-    margin-bottom: 1rem;
-    color: #fff;
+#modal-prev {
+    left: 20px;
 }
 
-.modal-content p {
-    color: var(--text-muted);
-    margin-bottom: 2rem;
+#modal-next {
+    right: 20px;
 }
 
 main {
@@ -212,37 +209,94 @@ main {
     font-size: 1.2rem;
 }
 
-/* Grid Layout */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-    gap: 2rem;
+/* Carousel Layout */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    /* Adjust as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    overflow: hidden;
+    margin: 2rem 0;
 }
 
-/* Card Styles */
+.carousel-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+}
+
+/* Card Styles in Carousel */
 .project-card {
+    position: absolute;
+    width: 350px;
+    height: 450px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 16px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
     display: flex;
     flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    backdrop-filter: blur(5px);
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 255, 255, 0.1);
+.project-card.active {
+    z-index: 10;
+    transform: translateX(0) scale(1);
+    opacity: 1;
+    border-color: rgba(100, 149, 237, 0.5);
+    box-shadow: 0 0 30px rgba(100, 149, 237, 0.2);
+}
+
+.project-card.prev {
+    z-index: 5;
+    transform: translateX(-380px) scale(0.85) rotateY(15deg);
+    opacity: 0.6;
+    filter: brightness(0.7);
+}
+
+.project-card.next {
+    z-index: 5;
+    transform: translateX(380px) scale(0.85) rotateY(-15deg);
+    opacity: 0.6;
+    filter: brightness(0.7);
+}
+
+.project-card.far-prev {
+    z-index: 1;
+    transform: translateX(-700px) scale(0.7) rotateY(25deg);
+    opacity: 0;
+    pointer-events: none;
+    /* Prevent clicking hidden items */
+}
+
+.project-card.far-next {
+    z-index: 1;
+    transform: translateX(700px) scale(0.7) rotateY(-25deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.project-card:hover .card-image {
+    transform: scale(1.05);
 }
 
 .card-image {
-    height: 200px;
-    background: linear-gradient(45deg, #1a1f35, #252a40);
-    position: relative;
-    /* Placeholder pattern */
-    background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
-    background-size: 20px 20px;
+    height: 250px;
+    background-color: #1a1f35;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease;
 }
 
 .card-content {
@@ -250,19 +304,240 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
+    background: linear-gradient(to top, rgba(5, 9, 21, 0.9), transparent);
 }
 
 .card-content h2 {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
     color: #fff;
 }
 
 .card-content p {
     color: var(--text-muted);
-    font-size: 0.95rem;
-    margin-bottom: 1.5rem;
-    flex-grow: 1;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Navigation Buttons */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(20, 25, 40, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 20;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.carousel-btn:hover {
+    background: rgba(100, 149, 237, 0.2);
+    border-color: rgba(100, 149, 237, 0.5);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+/* Custom Modal Layout */
+.modal-custom {
+    max-width: 1000px;
+    width: 90%;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+    background: rgb(15, 20, 35);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: modalPop 0.3s ease-out;
+}
+
+@keyframes modalPop {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    overflow: hidden;
+}
+
+.modal-left-col {
+    flex: 1.8;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(10, 15, 25);
+    position: relative;
+    overflow: hidden;
+}
+
+.modal-image-container {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+
+.modal-image-container img.main-img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    /* Pop out from bg */
+}
+
+.modal-image-container img.blur-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(20px) brightness(0.5);
+    z-index: 1;
+    transform: scale(1.1);
+    /* Prevent blur edges showing */
+}
+
+/* Thumbnails */
+.modal-thumbnails {
+    height: 80px;
+    background: rgba(10, 10, 10, 0.95);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    overflow-x: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: 4px;
+    cursor: pointer;
+    object-fit: cover;
+    opacity: 0.5;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    flex-shrink: 0;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    opacity: 1;
+    border-color: #6495ed;
+}
+
+.modal-text {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    background: linear-gradient(145deg, rgba(20, 25, 40, 1), rgba(15, 20, 35, 1));
+}
+
+.modal-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #fff, #a0a0a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-text p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.5);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 32px;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.close-btn:hover {
+    background: rgba(255, 0, 0, 0.7);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .modal-body {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .modal-custom {
+        height: 90vh;
+        max-height: none;
+    }
+
+    .modal-left-col {
+        flex: none;
+        height: 50vh;
+    }
+
+    .modal-text {
+        flex: none;
+        padding: 1.5rem;
+    }
+
+    .modal-nav-btn {
+        display: none;
+    }
 }
 
 .tags {
@@ -292,6 +567,12 @@ footer {
 .about-section {
     padding: 6rem 0;
     margin-top: 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-section {
+    padding: 5rem 0 2rem;
+    margin-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -368,6 +649,14 @@ footer {
     background-size: cover;
 }
 
+.logo-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    /* Slightly rounded square */
+    object-fit: contain;
+}
+
 .profile-card h3 {
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -399,7 +688,11 @@ footer {
 }
 
 .social-card .icon {
-    font-size: 2.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .social-card span {
@@ -469,6 +762,54 @@ footer {
     opacity: 0.8;
 }
 
+.contact-form {
+    width: min(680px, 100%);
+    margin: 0 auto;
+    padding: 2rem;
+    display: grid;
+    gap: 1.2rem;
+    background: rgba(20, 25, 40, 0.72);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+}
+
+.contact-form label {
+    display: grid;
+    gap: 0.45rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(5, 9, 21, 0.74);
+    color: var(--text-color);
+    font: inherit;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: rgba(100, 149, 237, 0.75);
+    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.14);
+}
+
+.contact-form button {
+    justify-self: start;
+}
+
 /* Responsive Bento */
 @media (max-width: 768px) {
     .bento-grid {
@@ -481,6 +822,14 @@ footer {
     .social-card {
         grid-column: span 1;
         grid-row: auto;
+    }
+
+    .contact-form {
+        padding: 1.25rem;
+    }
+
+    .contact-form button {
+        width: 100%;
     }
 }
 

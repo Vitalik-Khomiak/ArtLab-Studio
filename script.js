@@ -144,29 +144,191 @@ window.addEventListener('mouseout',
 init();
 animate();
 
-// --- Interactivity & Modal Logic ---
+// --- Carousel & Modal Logic ---
 
 document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('modal');
-    const closeBtn = document.querySelector('.close-btn');
-    const closeModalBtn = document.querySelector('.close-modal-btn');
-    const placeholders = document.querySelectorAll('.placeholder-link, .placeholder-btn');
+    // Canvas resize fix
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-    // Show modal
-    placeholders.forEach(el => {
-        el.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.style.display = 'flex';
+    // --- Carousel Logic ---
+    const track = document.querySelector('.carousel-track');
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+
+    if (!track || cards.length === 0) return;
+
+    let currentIndex = 0; // Start at the first item
+
+    const updateCarousel = () => {
+        cards.forEach((card, index) => {
+            // Reset classes
+            card.className = 'project-card';
+
+            // Calculate distance from center
+            // Calculate distance from center with cyclic wrapping
+            let diff = index - currentIndex;
+            if (diff > cards.length / 2) diff -= cards.length;
+            if (diff < -cards.length / 2) diff += cards.length;
+
+            if (diff === 0) {
+                card.classList.add('active');
+            } else if (diff === 1) {
+                card.classList.add('next');
+            } else if (diff === -1) {
+                card.classList.add('prev');
+            } else if (diff > 1) {
+                card.classList.add('far-next');
+            } else if (diff < -1) {
+                card.classList.add('far-prev');
+            }
+        });
+    };
+
+    const nextSlide = () => {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCarousel();
+    };
+
+    const prevSlide = () => {
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateCarousel();
+    };
+
+    // Event Listeners for Nav Buttons
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+
+    // Keyboard Navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+    });
+
+    // Click on card to navigate or open modal
+    cards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            if (currentIndex !== index) {
+                currentIndex = index;
+                updateCarousel();
+            } else {
+                openModal(card);
+            }
         });
     });
 
-    // Close modal functions
+    // Initialize Carousel
+    updateCarousel();
+
+
+    // --- Dynamic Modal Logic ---
+    const modal = document.getElementById('project-modal');
+    const closeBtn = document.querySelector('.close-btn');
+    const modalPrevBtn = document.getElementById('modal-prev');
+    const modalNextBtn = document.getElementById('modal-next');
+
+    // Elements to populate
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-description');
+    const modalImgContainer = document.getElementById('modal-image-container');
+    const modalThumbnails = document.getElementById('modal-thumbnails');
+
+    const openModal = (card) => {
+        const title = card.getAttribute('data-title');
+        const desc = card.getAttribute('data-desc');
+        const galleryData = card.getAttribute('data-gallery');
+
+        // Extract main image URL from style or gallery
+        let mainImageUrl;
+        const bgImageStyle = card.querySelector('.card-image').style.backgroundImage;
+        const bgImageUrl = bgImageStyle.replace('url("', '').replace('")', '');
+
+        // Parse gallery images
+        let images = [];
+        if (galleryData) {
+            images = galleryData.split(',').map(url => url.trim());
+        } else {
+            images = [bgImageUrl];
+        }
+        mainImageUrl = images[0];
+
+        modalTitle.textContent = title;
+        modalDesc.textContent = desc;
+
+        // Clear previous content
+        modalImgContainer.innerHTML = '';
+        modalThumbnails.innerHTML = '';
+
+        // Create Container for images
+        // Background Blur Image
+        const bgImg = document.createElement('img');
+        bgImg.src = mainImageUrl;
+        bgImg.className = 'blur-bg';
+        modalImgContainer.appendChild(bgImg);
+
+        // Main Image
+        const mainImg = document.createElement('img');
+        mainImg.src = mainImageUrl;
+        mainImg.alt = title;
+        mainImg.className = 'main-img';
+        modalImgContainer.appendChild(mainImg);
+
+        // Generate Thumbnails if there are multiple images
+        if (images.length > 1) {
+            modalThumbnails.style.display = 'flex';
+            images.forEach((imgUrl, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgUrl;
+                thumb.className = index === 0 ? 'thumbnail active' : 'thumbnail';
+                thumb.addEventListener('click', () => {
+                    // Update images
+                    mainImg.style.opacity = '0';
+                    bgImg.style.opacity = '0';
+
+                    setTimeout(() => {
+                        mainImg.src = imgUrl;
+                        bgImg.src = imgUrl;
+                        mainImg.style.opacity = '1';
+                        bgImg.style.opacity = '1';
+                    }, 200);
+
+                    // Update active class
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                modalThumbnails.appendChild(thumb);
+            });
+        } else {
+            modalThumbnails.style.display = 'none';
+        }
+
+        modal.style.display = 'flex';
+    };
+
+    // Modal Navigation Handlers
+    const showNextProject = (e) => {
+        e.stopPropagation(); // Prevent bubbling
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCarousel();
+        openModal(cards[currentIndex]);
+    };
+
+    const showPrevProject = (e) => {
+        e.stopPropagation();
+        currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+        updateCarousel();
+        openModal(cards[currentIndex]);
+    };
+
+    if (modalNextBtn) modalNextBtn.addEventListener('click', showNextProject);
+    if (modalPrevBtn) modalPrevBtn.addEventListener('click', showPrevProject);
+
     const closeModal = () => {
         modal.style.display = 'none';
     };
 
-    closeBtn.addEventListener('click', closeModal);
-    closeModalBtn.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
     // Close on outside click
     window.addEventListener('click', (e) => {
@@ -175,8 +337,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Smooth scroll for non-placeholder anchors
-    document.querySelectorAll('a[href^="#"]:not(.placeholder-link)').forEach(anchor => {
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href').substring(1);
@@ -188,4 +351,76 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // --- Language Switcher Logic ---
+    const translations = {
+        'en': {
+            'nav.home': 'Home',
+            'nav.projects': 'Projects',
+            'nav.about': 'About',
+            'nav.blog': 'Blog',
+            'nav-contact': 'Contact Me',
+            'header.projects': 'Projects',
+            'header.projectsDesc': 'A collection of my 3D works and experiments.',
+            'btn.details': 'Details',
+            'section.about': 'Who am I?',
+            'profile.desc': 'Cg generalist from Lviv 🎬✨',
+            'profile.location': 'Lviv, Ukraine',
+            'contact.title': 'Contact Me',
+            'contact.subtitle': 'Tell me about a project, idea, or collaboration.',
+            'contact.name': 'Name',
+            'contact.email': 'Email',
+            'contact.message': 'Message',
+            'contact.submit': 'Send',
+            'footer.rights': '© 2026 ArtLab Studio. All rights reserved.'
+        },
+        'uk': {
+            'nav.home': 'Головна',
+            'nav.projects': 'Проекти',
+            'nav.about': 'Хто я?',
+            'nav.blog': 'Блог',
+            'nav-contact': 'Зворотній зв\'язок',
+            'header.projects': 'Проекти',
+            'header.projectsDesc': 'Колекція моїх 3D робіт та експериментів.',
+            'btn.details': 'Детальніше',
+            'section.about': 'Хто я?',
+            'profile.desc': 'Cg generalist зі Львова 🎬✨',
+            'profile.location': 'Львів, Україна',
+            'contact.title': 'Зворотній зв\'язок',
+            'contact.subtitle': 'Напиши мені про проєкт, ідею або співпрацю.',
+            'contact.name': 'Ім\'я',
+            'contact.email': 'Email',
+            'contact.message': 'Повідомлення',
+            'contact.submit': 'Надіслати',
+            'footer.rights': '© 2026 ArtLab Studio. Всі права захищені.'
+        }
+    };
+
+    let currentLang = 'uk'; // Default to Ukrainian as per initial content 
+
+    const langBtn = document.getElementById('lang-btn');
+
+    function updateLanguage(lang) {
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
+
+        if (langBtn) {
+            langBtn.textContent = lang === 'en' ? 'EN' : 'UA';
+        }
+        currentLang = lang;
+    }
+
+    if (langBtn) {
+        // Initialize button text
+        langBtn.textContent = currentLang === 'en' ? 'EN' : 'UA';
+
+        langBtn.addEventListener('click', () => {
+            const newLang = currentLang === 'en' ? 'uk' : 'en';
+            updateLanguage(newLang);
+        });
+    }
 });

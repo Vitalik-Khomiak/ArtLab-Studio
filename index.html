@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Portfolio</title>
+    <title>ArtLab Studio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="images/artlab_logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 </head>
@@ -16,7 +17,7 @@
     <canvas id="bg-canvas"></canvas>
     <nav>
         <div class="nav-left">
-            <div class="logo-img"></div>
+            <img src="images/artlab_logo.png" alt="ArtLab Logo" class="logo-img">
             <div class="logo-text">
                 <div class="logo-title">ArtLab Studio</div>
                 <div class="logo-subtitle">3D Artist & Designer</div>
@@ -24,79 +25,203 @@
         </div>
 
         <div class="nav-center">
-            <a href="#home" class="nav-link active">Головна</a>
-            <a href="#projects" class="nav-link">Проекти</a>
-            <a href="#about" class="nav-link">Хто я?</a>
-            <a href="#blog" class="nav-link placeholder-link">Блог</a>
+            <a href="#home" class="nav-link active" data-i18n="nav.home">Головна</a>
+            <a href="#projects" class="nav-link" data-i18n="nav.projects">Проекти</a>
+            <a href="#about" class="nav-link" data-i18n="nav.about">Хто я?</a>
+            <a href="#blog" class="nav-link placeholder-link" data-i18n="nav.blog">Блог</a>
         </div>
 
         <div class="nav-right">
-            <button class="btn btn-primary placeholder-btn">Зворотній зв'язок</button>
+            <a href="#contact" class="btn btn-primary" data-i18n="nav-contact">Зворотній зв'язок</a>
+            <button id="lang-btn" class="btn btn-outline" style="margin-left: 10px;">EN</button>
         </div>
     </nav>
 
     <main id="home">
         <header class="page-header">
-            <h1>Проекти</h1>
-            <p>Колекція моїх 3D робіт та експериментів.</p>
+            <h1 data-i18n="header.projects">Проекти</h1>
+            <p data-i18n="header.projectsDesc">Колекція моїх 3D робіт та експериментів.</p>
         </header>
 
-        <section id="projects" class="projects-grid">
-            <!-- Project Card 1 -->
-            <article class="project-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2>Project Alpha</h2>
-                    <p>High-fidelity character model for game engine integration.</p>
-                    <div class="tags">
-                        <span>Blender</span>
-                        <span>ZBrush</span>
-                    </div>
-                </div>
-            </article>
+        <div id="projects" class="carousel-container">
+            <button class="carousel-btn prev-btn" aria-label="Previous Project">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
 
-            <!-- Project Card 2 -->
-            <article class="project-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2>Environment Concept</h2>
-                    <p>Sci-fi landscape utilization procedural generation techniques.</p>
-                    <div class="tags">
-                        <span>Unreal Engine 5</span>
-                        <span>Substance</span>
+            <div class="carousel-track">
+                <!-- IEM Katowice 2025 -->
+                <article class="project-card" data-title="IEM Katowice 2025"
+                    data-desc="ESL Cyber Doors visual design and branding. A comprehensive visual identity for the esports event."
+                    data-gallery="images/projects/iem_katowice_2025.png,images/projects/xbox_dualsense.jpg,images/projects/more_popcorns.png">
+                    <div class="card-image" style="background-image: url('images/projects/iem_katowice_2025.png')">
                     </div>
-                </div>
-            </article>
+                    <div class="card-content">
+                        <h2>IEM Katowice 2025</h2>
+                        <p>ESL Cyber Doors visual design and branding.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
 
-            <!-- Project Card 3 -->
-            <article class="project-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2>Hard Surface Prop</h2>
-                    <p>Detailed industrial machinery asset.</p>
-                    <div class="tags">
-                        <span>Maya</span>
-                        <span>Marmoset</span>
+                <!-- Xbox/DualSense -->
+                <article class="project-card" data-title="Xbox / DualSense"
+                    data-desc="Make Your Choice: High-fidelity controller renders showcasing detailed textures and lighting scenarios.">
+                    <div class="card-image" style="background-image: url('images/projects/xbox_dualsense.jpg')"></div>
+                    <div class="card-content">
+                        <h2>Xbox / DualSense</h2>
+                        <p>Make Your Choice: High-fidelity controller renders.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
                     </div>
-                </div>
-            </article>
+                </article>
 
-            <!-- Project Card 4 -->
-            <article class="project-card">
-                <div class="card-image"></div>
-                <div class="card-content">
-                    <h2>Animation Test</h2>
-                    <p>Rigging and animation study of a quadruped mech.</p>
-                    <div class="tags">
-                        <span>Blender</span>
+                <!-- More Popcorns -->
+                <article class="project-card" data-title="More Popcorns"
+                    data-desc="Creative 3D food illustration. Playful simulation of popcorn physics and texturing.">
+                    <div class="card-image" style="background-image: url('images/projects/more_popcorns.png')"></div>
+                    <div class="card-content">
+                        <h2>More Popcorns</h2>
+                        <p>Creative 3D food illustration.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
                     </div>
-                </div>
-            </article>
-        </section>
+                </article>
+
+                <!-- Varmilo Keyboard -->
+                <article class="project-card" data-title="Varmilo Chang-e"
+                    data-desc="Moonlit Magic 87/108 mechanical keyboard visualization. Focusing on keycap translucency and switch details.">
+                    <div class="card-image" style="background-image: url('images/projects/varmilo_keyboard.jpg')"></div>
+                    <div class="card-content">
+                        <h2>Varmilo Chang-e</h2>
+                        <p>Moonlit Magic 87/108 mechanical keyboard visualization.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- Japanese Midnight -->
+                <article class="project-card" data-title="Japanese Midnight"
+                    data-desc="Atmospheric environment design (2023). A moody night scene inspired by cyberpunk aesthetics and traditional Japanese architecture.">
+                    <div class="card-image" style="background-image: url('images/projects/japanese_midnight.png')">
+                    </div>
+                    <div class="card-content">
+                        <h2>Japanese Midnight</h2>
+                        <p>Atmospheric environment design (2023).</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- Tik Tik -->
+                <article class="project-card" data-title="Tik Tik 1"
+                    data-desc="Hmm, who's here? Character concept art. Exploring character design and stylization.">
+                    <div class="card-image" style="background-image: url('images/projects/tik_tik_1.png')"></div>
+                    <div class="card-content">
+                        <h2>Tik Tik 1</h2>
+                        <p>Hmm, who's here? Character concept art.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- Olive Oil -->
+                <article class="project-card" data-title="Olive Oil Design"
+                    data-desc="Sleek product visualization. Studio lighting setup for a premium glass bottle product shot.">
+                    <div class="card-image" style="background-image: url('images/projects/olive_oil_bottle.png')"></div>
+                    <div class="card-content">
+                        <h2>Olive Oil Design</h2>
+                        <p>Sleek product visualization.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- 2023 Geometry -->
+                <article class="project-card" data-title="Geometric 2023"
+                    data-desc="Abstract 3D graphic design. experimenting with primitive shapes, finding beauty in simplicity.">
+                    <div class="card-image" style="background-image: url('images/projects/project_2023.png')"></div>
+                    <div class="card-content">
+                        <h2>Geometric 2023</h2>
+                        <p>Abstract 3D graphic design.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- Store ArchVis -->
+                <article class="project-card" data-title="Store Arch-Vis"
+                    data-desc="Interior design visualization (2024). Realistic rendering of a modern retail space.">
+                    <div class="card-image" style="background-image: url('images/projects/store_archvis.png')"></div>
+                    <div class="card-content">
+                        <h2>Store Arch-Vis</h2>
+                        <p>Interior design visualization (2024).</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- Cherry Perfume -->
+                <article class="project-card" data-title="Cherry Perfume"
+                    data-desc="Cinematic product render. High contrast lighting to accentuate the bottle's silhouette.">
+                    <div class="card-image" style="background-image: url('images/projects/cherry_perfume.png')"></div>
+                    <div class="card-content">
+                        <h2>Cherry Perfume</h2>
+                        <p>Cinematic product render.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- Shure SM7B -->
+                <article class="project-card" data-title="Shure SM7B"
+                    data-desc="Realistic microphone hardware visualization. Hard surface modeling practice.">
+                    <div class="card-image" style="background-image: url('images/projects/shure_sm7b.png')"></div>
+                    <div class="card-content">
+                        <h2>Shure SM7B</h2>
+                        <p>Realistic microphone hardware visualization.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- X10 Lamp -->
+                <article class="project-card" data-title="X10 Lamp"
+                    data-desc="Interior lighting product design (2022). Custom design for a modern desk lamp.">
+                    <div class="card-image" style="background-image: url('images/projects/x10_lamp.png')"></div>
+                    <div class="card-content">
+                        <h2>X10 Lamp</h2>
+                        <p>Interior lighting product design (2022).</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- HATOR Signify -->
+                <article class="project-card" data-title="HATOR Signify"
+                    data-desc="The Future of Sound & Light - RGB Mic. Promotional render for gaming hardware.">
+                    <div class="card-image" style="background-image: url('images/projects/hator_signify.gif')"></div>
+                    <div class="card-content">
+                        <h2>HATOR Signify</h2>
+                        <p>The Future of Sound & Light - RGB Mic.</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+
+                <!-- Houdini Simulation -->
+                <article class="project-card" data-title="Houdini Sim"
+                    data-desc="Motion graphics particle simulation (2021). Experimenting with Vellum and fluid dynamics in Houdini.">
+                    <div class="card-image" style="background-image: url('images/projects/houdini_simulation.png')">
+                    </div>
+                    <div class="card-content">
+                        <h2>Houdini Sim</h2>
+                        <p>Motion graphics particle simulation (2021).</p>
+                        <button class="btn btn-sm btn-outline" data-i18n="btn.details">Детальніше</button>
+                    </div>
+                </article>
+            </div>
+
+            <button class="carousel-btn next-btn" aria-label="Next Project">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
 
         <section id="about" class="about-section">
             <header class="section-header">
-                <h2>Хто я?</h2>
+                <h2 data-i18n="section.about">Хто я?</h2>
                 <p>CG Generalist • 3D Artist • Designer</p>
             </header>
 
@@ -105,36 +230,57 @@
                 <div class="bento-card profile-card">
                     <div class="profile-img"></div>
                     <h3>ArtLab</h3>
-                    <p>Cg generalist from Lviv 🎬✨</p>
+                    <p data-i18n="profile.desc">Cg generalist from Lviv 🎬✨</p>
                     <div class="location">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                             <circle cx="12" cy="10" r="3"></circle>
                         </svg>
-                        Lviv, Ukraine
+                        <span data-i18n="profile.location">Lviv, Ukraine</span>
                     </div>
                 </div>
 
                 <!-- Social Links -->
+                <!-- Social Links -->
                 <a href="https://www.instagram.com/Artlaab/" target="_blank" class="bento-card social-card instagram">
-                    <div class="icon">📸</div>
+                    <div class="icon">
+                        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </div>
                     <span>Instagram</span>
                 </a>
 
                 <a href="https://www.youtube.com/channel/UCVhLrdv1hH90Zv1w7N01vHg" target="_blank"
                     class="bento-card social-card youtube">
-                    <div class="icon">▶️</div>
+                    <div class="icon">
+                        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
+                        </svg>
+                    </div>
                     <span>YouTube</span>
                 </a>
 
                 <a href="https://www.tiktok.com/@Artlab06" target="_blank" class="bento-card social-card tiktok">
-                    <div class="icon">🎵</div>
+                    <div class="icon">
+                        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93v6.14c0 3.48-2.64 6.22-5.903 6.22-3.626 0-6.192-2.91-5.482-6.57.57-2.95 3.15-5.32 6.16-5.35v4.29c-1.07.03-2.18.66-2.43 1.71-.24.96.26 1.94 1.12 2.33 1.05.47 2.47-.12 2.63-1.34.07-.53.03-1.08.03-1.61v-14c-.03 0.033 0 0.033 0 0.033-.099 0.067-.197.101-.295.101z" />
+                        </svg>
+                    </div>
                     <span>TikTok</span>
                 </a>
 
                 <a href="https://t.me/Nocto_Vision" target="_blank" class="bento-card social-card telegram">
-                    <div class="icon">✈️</div>
+                    <div class="icon">
+                        <svg width="100%" height="100%" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M11.944 0a12 12 0 0 0 0 24 12 12 0 0 0 0-24zm6.26 7.708-2.12 10.02c-.16.7-.56.9-.92.9-.66 0-1.1-.34-1.88-1.02l-2.64-1.94-1.28 1.24c-.14.14-.26.26-.54.26l.18-2.7 4.9-4.44c.22-.18-.04-.28-.34-.1l-6.08 3.82-2.6-1.04c-.58-.28-.58-.56.12-.84l10.18-3.92c.48-.18.9.12.76 1.02z" />
+                        </svg>
+                    </div>
                     <span>Telegram</span>
                 </a>
 
@@ -148,20 +294,63 @@
                 </a>
             </div>
         </section>
+
+        <section id="contact" class="contact-section">
+            <header class="section-header">
+                <h2 data-i18n="contact.title">Зворотній зв'язок</h2>
+                <p data-i18n="contact.subtitle">Напиши мені про проєкт, ідею або співпрацю.</p>
+            </header>
+
+            <form class="contact-form" action="https://formsubmit.co/vitaliikhomiakk@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New message from ArtLab Studio site">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+
+                <label>
+                    <span data-i18n="contact.name">Ім'я</span>
+                    <input type="text" name="name" autocomplete="name" required>
+                </label>
+
+                <label>
+                    <span data-i18n="contact.email">Email</span>
+                    <input type="email" name="email" autocomplete="email" required>
+                </label>
+
+                <label>
+                    <span data-i18n="contact.message">Повідомлення</span>
+                    <textarea name="message" rows="6" required></textarea>
+                </label>
+
+                <button type="submit" class="btn btn-primary" data-i18n="contact.submit">Надіслати</button>
+            </form>
+        </section>
     </main>
 
-    <!-- Placeholder Modal -->
-    <div id="modal" class="modal">
-        <div class="modal-content">
+    <!-- Dynamic Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-nav-btn prev-project" id="modal-prev">&lt;</div>
+        <div class="modal-content modal-custom">
             <span class="close-btn">&times;</span>
-            <h2>Скоро буде!</h2>
-            <p>Цей розділ або функція знаходиться в розробці.</p>
-            <button class="btn btn-primary close-modal-btn">Зрозуміло</button>
+            <div class="modal-body">
+                <div class="modal-left-col">
+                    <div id="modal-image-container" class="modal-image-container">
+                        <!-- Image inserted via JS -->
+                    </div>
+                    <div id="modal-thumbnails" class="modal-thumbnails">
+                        <!-- Thumbnails inserted via JS -->
+                    </div>
+                </div>
+                <div class="modal-text">
+                    <h2 id="modal-title">Project Title</h2>
+                    <p id="modal-description">Project description goes here.</p>
+                </div>
+            </div>
         </div>
+        <div class="modal-nav-btn next-project" id="modal-next">&gt;</div>
     </div>
 
     <footer>
-        <p>&copy; 2026 ArtLab Studio. All rights reserved.</p>
+        <p data-i18n="footer.rights">&copy; 2026 ArtLab Studio. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
