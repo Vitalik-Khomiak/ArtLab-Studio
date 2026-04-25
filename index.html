@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtLab Studio</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20260425-2">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="images/artlab_logo.png">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="nav-right">
-            <a href="#contact" class="btn btn-primary" data-i18n="nav-contact">Зворотній зв'язок</a>
+            <a href="mailto:vitaliikhomiakk@gmail.com?subject=ArtLab%20Studio%20contact" class="btn btn-primary" data-i18n="nav-contact">Зворотній зв'язок</a>
             <button id="lang-btn" class="btn btn-outline" style="margin-left: 10px;">EN</button>
         </div>
     </nav>
@@ -295,35 +295,6 @@
             </div>
         </section>
 
-        <section id="contact" class="contact-section">
-            <header class="section-header">
-                <h2 data-i18n="contact.title">Зворотній зв'язок</h2>
-                <p data-i18n="contact.subtitle">Напиши мені про проєкт, ідею або співпрацю.</p>
-            </header>
-
-            <form class="contact-form" action="https://formsubmit.co/vitaliikhomiakk@gmail.com" method="POST">
-                <input type="hidden" name="_subject" value="New message from ArtLab Studio site">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_template" value="table">
-
-                <label>
-                    <span data-i18n="contact.name">Ім'я</span>
-                    <input type="text" name="name" autocomplete="name" required>
-                </label>
-
-                <label>
-                    <span data-i18n="contact.email">Email</span>
-                    <input type="email" name="email" autocomplete="email" required>
-                </label>
-
-                <label>
-                    <span data-i18n="contact.message">Повідомлення</span>
-                    <textarea name="message" rows="6" required></textarea>
-                </label>
-
-                <button type="submit" class="btn btn-primary" data-i18n="contact.submit">Надіслати</button>
-            </form>
-        </section>
     </main>
 
     <!-- Dynamic Modal -->
@@ -353,7 +324,7 @@
         <p data-i18n="footer.rights">&copy; 2026 ArtLab Studio. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=20260425-2"></script>
 </body>
 
 </html>

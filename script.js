@@ -366,12 +366,6 @@ document.addEventListener('DOMContentLoaded', () => {
             'section.about': 'Who am I?',
             'profile.desc': 'Cg generalist from Lviv 🎬✨',
             'profile.location': 'Lviv, Ukraine',
-            'contact.title': 'Contact Me',
-            'contact.subtitle': 'Tell me about a project, idea, or collaboration.',
-            'contact.name': 'Name',
-            'contact.email': 'Email',
-            'contact.message': 'Message',
-            'contact.submit': 'Send',
             'footer.rights': '© 2026 ArtLab Studio. All rights reserved.'
         },
         'uk': {
@@ -386,12 +380,6 @@ document.addEventListener('DOMContentLoaded', () => {
             'section.about': 'Хто я?',
             'profile.desc': 'Cg generalist зі Львова 🎬✨',
             'profile.location': 'Львів, Україна',
-            'contact.title': 'Зворотній зв\'язок',
-            'contact.subtitle': 'Напиши мені про проєкт, ідею або співпрацю.',
-            'contact.name': 'Ім\'я',
-            'contact.email': 'Email',
-            'contact.message': 'Повідомлення',
-            'contact.submit': 'Надіслати',
             'footer.rights': '© 2026 ArtLab Studio. Всі права захищені.'
         }
     };
