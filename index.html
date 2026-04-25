@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ArtLab Studio</title>
-    <link rel="stylesheet" href="style.css?v=20260425-2">
+    <link rel="stylesheet" href="style.css?v=20260425-3">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" href="images/artlab_logo.png">
@@ -32,7 +32,7 @@
         </div>
 
         <div class="nav-right">
-            <a href="mailto:vitaliikhomiakk@gmail.com?subject=ArtLab%20Studio%20contact" class="btn btn-primary" data-i18n="nav-contact">Зворотній зв'язок</a>
+            <button id="contact-open" class="btn btn-primary" data-i18n="nav-contact">Зворотній зв'язок</button>
             <button id="lang-btn" class="btn btn-outline" style="margin-left: 10px;">EN</button>
         </div>
     </nav>
@@ -320,11 +320,37 @@
         <div class="modal-nav-btn next-project" id="modal-next">&gt;</div>
     </div>
 
+    <div id="contact-modal" class="modal contact-modal" aria-hidden="true">
+        <div class="contact-modal-content">
+            <button type="button" class="contact-close-btn" aria-label="Close">&times;</button>
+            <h2 data-i18n="contact.title">Задати питання</h2>
+            <p data-i18n="contact.subtitle">Напиши свою пошту і питання, я отримаю все на email.</p>
+
+            <form class="contact-form" action="https://formsubmit.co/vitaliikhomiakk@gmail.com" method="POST">
+                <input type="hidden" name="_subject" value="New question from ArtLab Studio site">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+
+                <label>
+                    <span data-i18n="contact.email">Твоя пошта</span>
+                    <input type="email" name="email" autocomplete="email" required>
+                </label>
+
+                <label>
+                    <span data-i18n="contact.question">Питання</span>
+                    <textarea name="question" rows="6" required></textarea>
+                </label>
+
+                <button type="submit" class="btn btn-primary" data-i18n="contact.submit">Надіслати</button>
+            </form>
+        </div>
+    </div>
+
     <footer>
         <p data-i18n="footer.rights">&copy; 2026 ArtLab Studio. All rights reserved.</p>
     </footer>
 
-    <script src="script.js?v=20260425-2"></script>
+    <script src="script.js?v=20260425-3"></script>
 </body>
 
 </html>

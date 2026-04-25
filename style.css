@@ -638,9 +638,10 @@ footer {
     background-color: #333;
     margin-bottom: 1.5rem;
     border: 3px solid rgba(255, 255, 255, 0.1);
-    /* Placeholder for profile image */
-    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="50" fill="%23444"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="40" fill="%23fff">AL</text></svg>');
+    background-image: url('images/artlab_profile.png');
+    background-position: center;
     background-size: cover;
+    filter: grayscale(1);
 }
 
 .logo-img {
@@ -756,6 +757,91 @@ footer {
     opacity: 0.8;
 }
 
+.contact-modal {
+    padding: 1.5rem;
+}
+
+.contact-modal-content {
+    width: min(560px, 100%);
+    position: relative;
+    padding: 2rem;
+    background: rgba(15, 20, 35, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+    animation: modalPop 0.3s ease-out;
+}
+
+.contact-modal-content h2 {
+    font-size: 2rem;
+    margin-bottom: 0.45rem;
+    color: #fff;
+}
+
+.contact-modal-content p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.contact-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.contact-close-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.contact-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.contact-form label {
+    display: grid;
+    gap: 0.45rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    background: rgba(5, 9, 21, 0.74);
+    color: var(--text-color);
+    font: inherit;
+    padding: 0.85rem 1rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: rgba(100, 149, 237, 0.75);
+    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.14);
+}
+
+.contact-form button {
+    justify-self: start;
+}
+
 /* Responsive Bento */
 @media (max-width: 768px) {
     .bento-grid {
@@ -770,6 +856,9 @@ footer {
         grid-row: auto;
     }
 
+    .contact-form button {
+        width: 100%;
+    }
 }
 
 /* Responsive */

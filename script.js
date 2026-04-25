@@ -227,6 +227,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.querySelector('.close-btn');
     const modalPrevBtn = document.getElementById('modal-prev');
     const modalNextBtn = document.getElementById('modal-next');
+    const contactOpenBtn = document.getElementById('contact-open');
+    const contactModal = document.getElementById('contact-modal');
+    const contactCloseBtn = document.querySelector('.contact-close-btn');
 
     // Elements to populate
     const modalTitle = document.getElementById('modal-title');
@@ -330,10 +333,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
+    const openContactModal = () => {
+        if (contactModal) {
+            contactModal.style.display = 'flex';
+            contactModal.setAttribute('aria-hidden', 'false');
+        }
+    };
+
+    const closeContactModal = () => {
+        if (contactModal) {
+            contactModal.style.display = 'none';
+            contactModal.setAttribute('aria-hidden', 'true');
+        }
+    };
+
+    if (contactOpenBtn) contactOpenBtn.addEventListener('click', openContactModal);
+    if (contactCloseBtn) contactCloseBtn.addEventListener('click', closeContactModal);
+
     // Close on outside click
     window.addEventListener('click', (e) => {
         if (e.target == modal) {
             closeModal();
+        }
+        if (e.target == contactModal) {
+            closeContactModal();
         }
     });
 
@@ -366,6 +389,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'section.about': 'Who am I?',
             'profile.desc': 'Cg generalist from Lviv 🎬✨',
             'profile.location': 'Lviv, Ukraine',
+            'contact.title': 'Ask a Question',
+            'contact.subtitle': 'Add your email and question, and I will receive it by email.',
+            'contact.email': 'Your email',
+            'contact.question': 'Question',
+            'contact.submit': 'Send',
             'footer.rights': '© 2026 ArtLab Studio. All rights reserved.'
         },
         'uk': {
@@ -380,6 +408,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'section.about': 'Хто я?',
             'profile.desc': 'Cg generalist зі Львова 🎬✨',
             'profile.location': 'Львів, Україна',
+            'contact.title': 'Задати питання',
+            'contact.subtitle': 'Напиши свою пошту і питання, я отримаю все на email.',
+            'contact.email': 'Твоя пошта',
+            'contact.question': 'Питання',
+            'contact.submit': 'Надіслати',
             'footer.rights': '© 2026 ArtLab Studio. Всі права захищені.'
         }
     };
