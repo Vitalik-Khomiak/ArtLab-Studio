@@ -3,7 +3,7 @@ const copy = {
         "brand.role": "Cinematic CG Generalist",
         "nav.cases": "Cases",
         "nav.process": "Process",
-        "nav.archive": "Archive",
+        "nav.archive": "Gallery",
         "nav.contact": "Contact",
         "hero.kicker": "Cinematic CG portfolio",
         "hero.title": "Cinematic CG worlds and key visuals",
@@ -26,9 +26,9 @@ const copy = {
         "process.step3.copy": "Shape materials, contrast, atmosphere and readability of the final image.",
         "process.step4.title": "Final render / delivery",
         "process.step4.copy": "Prepare final stills or loops for presentation, campaign use or portfolio handoff.",
-        "archive.kicker": "Technical archive",
-        "archive.title": "Hard surface, products and lab work",
-        "archive.copy": "Supporting work that proves modeling, material control, lighting discipline and simulation range.",
+        "archive.kicker": "Technical gallery",
+        "archive.title": "Hard surface, products and studies",
+        "archive.copy": "Supporting work that proves modeling, material control, lighting discipline, motion tests and simulation range.",
         "about.kicker": "Profile",
         "about.title": "CG generalist focused on memorable frames",
         "about.copy": "I work across visualization, stylized scenes, atmospheric environments, hard surface forms and motion experiments. The goal is always the same: a frame that reads fast and feels intentional.",
@@ -40,19 +40,20 @@ const copy = {
         "contact.message": "Brief or question",
         "contact.submit": "Send by email",
         "footer.rights": "© 2026 ArtLab Studio. All rights reserved.",
-        "archiveCount": "works in archive",
+        "archiveCount": "works in gallery",
         "openProject": "Open project",
         "modal.brief": "Brief",
         "modal.process": "Process",
         "modal.result": "Result",
         "modal.deliverables": "Deliverables",
-        "modal.tools": "Tools"
+        "modal.tools": "Tools",
+        "modal.watchOnline": "Watch online"
     },
     uk: {
         "brand.role": "Cinematic CG Generalist",
         "nav.cases": "Кейси",
         "nav.process": "Процес",
-        "nav.archive": "Архів",
+        "nav.archive": "Галерея",
         "nav.contact": "Контакт",
         "hero.kicker": "Cinematic CG portfolio",
         "hero.title": "Кінематографічні CG-світи та key visuals",
@@ -75,9 +76,9 @@ const copy = {
         "process.step3.copy": "Формуємо матеріали, контраст, атмосферу і читабельність фінального зображення.",
         "process.step4.title": "Final render / delivery",
         "process.step4.copy": "Готуємо фінальні stills або loops для презентації, campaign use чи портфоліо.",
-        "archive.kicker": "Technical archive",
-        "archive.title": "Hard surface, products і lab work",
-        "archive.copy": "Додаткові роботи, які показують моделювання, контроль матеріалів, дисципліну світла і ширину симуляцій.",
+        "archive.kicker": "Technical gallery",
+        "archive.title": "Hard surface, products і studies",
+        "archive.copy": "Додаткові роботи, які показують моделювання, контроль матеріалів, дисципліну світла, motion-тести і ширину симуляцій.",
         "about.kicker": "Profile",
         "about.title": "CG generalist з фокусом на кадри, що запам'ятовуються",
         "about.copy": "Я працюю з візуалізацією, стилізованими сценами, атмосферними середовищами, hard surface формами і motion-експериментами. Ціль одна: кадр має швидко читатися і відчуватися навмисним.",
@@ -89,13 +90,14 @@ const copy = {
         "contact.message": "Brief або питання",
         "contact.submit": "Надіслати email",
         "footer.rights": "© 2026 ArtLab Studio. Всі права захищені.",
-        "archiveCount": "робіт в архіві",
+        "archiveCount": "робіт у галереї",
         "openProject": "Відкрити роботу",
         "modal.brief": "Brief",
         "modal.process": "Процес",
         "modal.result": "Результат",
         "modal.deliverables": "Deliverables",
-        "modal.tools": "Tools"
+        "modal.tools": "Tools",
+        "modal.watchOnline": "Дивитися онлайн"
     }
 };
 
@@ -105,7 +107,7 @@ const archiveFilters = [
     { id: "product", label: { en: "Product", uk: "Product" } },
     { id: "environment", label: { en: "Environment", uk: "Environment" } },
     { id: "simulation", label: { en: "Simulation", uk: "Simulation" } },
-    { id: "lab", label: { en: "Lab", uk: "Lab" } }
+    { id: "studies", label: { en: "Studies", uk: "Studies" } }
 ];
 
 const projects = [
@@ -147,25 +149,35 @@ const projects = [
         title: "Japanese Midnight",
         year: "2023",
         category: "environment",
-        service: "Environment",
+        service: "Cinematic",
         track: "featured",
         priority: 2,
         cover: "images/projects/japanese_midnight.png",
         mediaType: "video",
         video: "videos/projects/japanese_midnight.mp4",
+        links: [{ label: { en: "YouTube", uk: "YouTube" }, url: "https://www.youtube.com/watch?v=fD-lYnf1IAc" }],
         ratio: "wide",
-        role: { en: "Environment design", uk: "Environment design" },
-        focus: { en: "Mood, composition, night atmosphere", uk: "Настрій, композиція, нічна атмосфера" },
+        role: { en: "Full CG shot production from scratch", uk: "Повний CG-shot production з нуля" },
+        focus: { en: "Environment, character and bird rigging, animation, camera and VFX", uk: "Environment, ріг персонажа і пташки, анімація, камера та VFX" },
         description: {
-            en: "Night environment with a cyberpunk mood, warm/cool light contrast and a clear depth composition.",
-            uk: "Нічне середовище з cyberpunk-настроєм, контрастом теплого й холодного світла та чіткою композицією в глибині."
+            en: "A complete cinematic night shot built from scratch: environment, character and bird rigging, animation, camera movement and VFX work.",
+            uk: "Повний cinematic night shot, зроблений з нуля: environment, ріг персонажа і пташки, анімація, рух камери та VFX."
         },
-        tags: ["Environment", "Mood", "Night"],
-        deliverables: ["Mood frame", "Environment composition"],
+        tags: ["Full CG Shot", "Rigging", "VFX"],
+        deliverables: ["Complete cinematic shot", "Environment built from scratch", "Character rig and animation", "Bird rig and animation", "Camera animation", "VFX pass"],
         tools: [],
-        brief: "",
-        process: "",
-        result: "",
+        brief: {
+            en: "Create a moody cinematic scene as a complete CG shot, handling the full production path from the first setup to the final animated frame.",
+            uk: "Створити атмосферну cinematic-сцену як повний CG-shot, закривши весь production-шлях від першої збірки до фінального анімованого кадру."
+        },
+        process: {
+            en: "Built the scene from scratch, rigged and animated the main character, rigged the bird element, animated the camera for a cinematic reveal, and added VFX to support the night atmosphere and movement.",
+            uk: "Зібрав сцену з нуля, зарігав і анімував головного персонажа, зарігав пташку, анімував камеру для cinematic reveal і додав VFX для нічної атмосфери та руху."
+        },
+        result: {
+            en: "A finished atmospheric CG sequence that shows environment creation, rigging, character animation, camera work and VFX in one self-contained piece.",
+            uk: "Готовий атмосферний CG-епізод, який показує environment creation, rigging, character animation, camera work і VFX в одному цілісному ролику."
+        },
         gallery: ["images/projects/japanese_midnight.png"]
     },
     {
@@ -179,6 +191,7 @@ const projects = [
         cover: "images/projects/tik_tik_1.png",
         mediaType: "video",
         video: "videos/projects/tik_tik_1.mp4",
+        links: [{ label: { en: "YouTube Short", uk: "YouTube Short" }, url: "https://www.youtube.com/shorts/vhAC8xlOb30" }],
         ratio: "tall",
         role: { en: "Character concept", uk: "Character concept" },
         focus: { en: "Shape language, stylization", uk: "Shape language, стилізація" },
@@ -277,6 +290,7 @@ const projects = [
         cover: "images/projects/varmilo_keyboard.jpg",
         mediaType: "video",
         video: "videos/projects/varmilo_keyboard.mp4",
+        links: [{ label: { en: "YouTube", uk: "YouTube" }, url: "https://www.youtube.com/watch?v=PbmAkJTmE48" }],
         ratio: "square",
         role: { en: "Product visualization", uk: "Product visualization" },
         focus: { en: "Keycaps, materials, soft light", uk: "Кейкапи, матеріали, м'яке світло" },
@@ -350,7 +364,9 @@ const projects = [
         priority: 14,
         cover: "images/projects/xbox_dualsense.jpg",
         mediaType: "video",
-        video: "videos/projects/xbox_dualsense.mp4",
+        video: "videos/projects/xbox_dualsense_short_audio.mp4",
+        hasAudio: true,
+        links: [{ label: { en: "YouTube Short", uk: "YouTube Short" }, url: "https://www.youtube.com/shorts/6UyRMkeeGjk" }],
         ratio: "wide",
         role: { en: "Product render", uk: "Product render" },
         focus: { en: "Hard surface, plastic, studio light", uk: "Hard surface, пластик, студійне світло" },
@@ -415,12 +431,49 @@ const projects = [
         gallery: ["images/projects/store_archvis.png"]
     },
     {
+        id: "leaf-animation-study",
+        title: "Leaf Animation Study",
+        year: "2025",
+        category: "simulation",
+        service: "Motion Study",
+        track: "studies",
+        priority: 17,
+        cover: "images/projects/leaf_animation_study.jpg",
+        mediaType: "video",
+        video: "videos/projects/leaf_animation_study.mp4",
+        hasAudio: true,
+        links: [{ label: { en: "YouTube Short", uk: "YouTube Short" }, url: "https://www.youtube.com/shorts/6hTKvoBEUJk" }],
+        ratio: "tall",
+        role: { en: "Procedural motion study", uk: "Procedural motion study" },
+        focus: { en: "Leaf animation, Blender, procedural flow", uk: "Leaf animation, Blender, procedural flow" },
+        description: {
+            en: "Vertical Blender motion study focused on readable leaf animation, procedural movement and a compact social-ready presentation.",
+            uk: "Вертикальний Blender motion study з фокусом на leaf animation, procedural movement і компактну social-ready подачу."
+        },
+        tags: ["Blender", "Leaf motion", "Procedural"],
+        deliverables: ["Vertical motion clip", "Leaf animation study", "Procedural movement setup"],
+        tools: ["Blender"],
+        brief: {
+            en: "Create a short vertical study that demonstrates a clean leaf animation idea in a compact, readable format.",
+            uk: "Створити короткий vertical study, який демонструє чисту ідею leaf animation у компактному й читабельному форматі."
+        },
+        process: {
+            en: "Built the motion setup around procedural leaf movement, then shaped the timing and presentation for a quick Blender-focused short.",
+            uk: "Зібрав motion setup навколо procedural leaf movement, потім налаштував timing і подачу для короткого Blender-focused ролика."
+        },
+        result: {
+            en: "A concise motion study that adds procedural animation range to the gallery.",
+            uk: "Лаконічний motion study, який додає procedural animation range у gallery."
+        },
+        gallery: ["images/projects/leaf_animation_study.jpg"]
+    },
+    {
         id: "houdini-sim",
         title: "Houdini Sim",
         year: "2021",
         category: "simulation",
-        service: "Simulation",
-        track: "lab",
+        service: "Simulation Study",
+        track: "studies",
         priority: 20,
         cover: "images/projects/houdini_simulation.png",
         ratio: "wide",
@@ -430,7 +483,7 @@ const projects = [
             en: "Houdini simulation experiment focused on movement, particle density and graphic rhythm.",
             uk: "Експеримент з Houdini-симуляцією, де важливі рух, щільність частинок і графічний ритм."
         },
-        tags: ["Houdini", "Simulation", "Lab"],
+        tags: ["Houdini", "Particles", "Motion"],
         deliverables: ["Simulation study", "Motion-oriented frame"],
         tools: [],
         brief: "",
@@ -442,9 +495,9 @@ const projects = [
         id: "geometric-2023",
         title: "Geometric 2023",
         year: "2023",
-        category: "lab",
-        service: "Lab",
-        track: "lab",
+        category: "graphic",
+        service: "Graphic Study",
+        track: "studies",
         priority: 21,
         cover: "images/projects/project_2023.png",
         ratio: "tall",
@@ -454,7 +507,7 @@ const projects = [
             en: "Abstract composition built from basic forms, focused on rhythm, simplicity and mass balance.",
             uk: "Абстрактна композиція з базових форм, де головними є ритм, простота та баланс мас."
         },
-        tags: ["Abstract", "Graphic", "Lab"],
+        tags: ["Graphic", "Composition", "Shapes"],
         deliverables: ["Graphic study", "Abstract frame"],
         tools: [],
         brief: "",
@@ -496,6 +549,7 @@ const els = {
     modalTags: document.getElementById("modal-tags"),
     modalFacts: document.getElementById("modal-facts"),
     modalDetails: document.getElementById("modal-details"),
+    modalLinks: document.getElementById("modal-links"),
     modalThumbs: document.getElementById("modal-thumbs")
 };
 
@@ -533,7 +587,7 @@ function visibleArchiveProjects() {
     return archiveProjects().filter((project) => {
         if (state.archiveFilter === "all") return true;
         if (state.archiveFilter === "technical") return project.service === "Technical";
-        if (state.archiveFilter === "lab") return project.track === "lab" || project.service === "Lab";
+        if (state.archiveFilter === "studies") return project.track === "studies" || project.service.toLowerCase().includes("study");
         return project.category === state.archiveFilter || project.service.toLowerCase() === state.archiveFilter;
     });
 }
@@ -594,10 +648,12 @@ function modalMediaItems(project) {
 
 function modalMediaMarkup(item, project) {
     if (item.type === "video") {
+        const hasAudio = project.hasAudio === true;
+
         return mediaMarkup(project, {
-            autoplay: true,
-            muted: true,
-            loop: true,
+            autoplay: !hasAudio,
+            muted: !hasAudio,
+            loop: !hasAudio,
             controls: true,
             preload: "metadata"
         });
@@ -765,6 +821,37 @@ function detailSection(title, values) {
     `;
 }
 
+function projectLinks(project) {
+    return Array.isArray(project.links)
+        ? project.links.filter((link) => link && link.url)
+        : [];
+}
+
+function renderProjectLinks(project) {
+    const links = projectLinks(project);
+
+    if (!links.length) {
+        els.modalLinks.hidden = true;
+        els.modalLinks.innerHTML = "";
+        return;
+    }
+
+    els.modalLinks.hidden = false;
+    els.modalLinks.innerHTML = `
+        <h3>${escapeHtml(text("modal.watchOnline"))}</h3>
+        <div class="modal-link-list">
+            ${links.map((link) => `
+                <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener">
+                    <span>${escapeHtml(localized(link.label || { en: "YouTube", uk: "YouTube" }))}</span>
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path d="M7 17 17 7M9 7h8v8" />
+                    </svg>
+                </a>
+            `).join("")}
+        </div>
+    `;
+}
+
 function renderModal() {
     const project = findProject(state.modalId);
     if (!project) return;
@@ -798,6 +885,7 @@ function renderModal() {
 
     els.modalDetails.innerHTML = detailHtml;
     els.modalDetails.hidden = detailHtml.length === 0;
+    renderProjectLinks(project);
 
     els.modalThumbs.innerHTML = mediaItems.length > 1
         ? mediaItems.map((item, index) => `

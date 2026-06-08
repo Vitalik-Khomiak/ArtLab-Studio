@@ -598,11 +598,27 @@ svg {
 .modal-tags,
 .skill-cloud {
     display: flex;
+    align-items: flex-start;
     flex-wrap: wrap;
     gap: 0.4rem;
 }
 
-.project-tags span,
+.project-tags span {
+    max-width: 100%;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid rgba(246, 240, 223, 0.14);
+    border-radius: 6px;
+    padding: 0.18rem 0.42rem;
+    color: var(--faint);
+    background: rgba(246, 240, 223, 0.035);
+    font-size: 0.68rem;
+    font-weight: 800;
+    line-height: 1.1;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
 .modal-tags span,
 .skill-cloud span {
     border: 1px solid var(--line);
@@ -913,6 +929,10 @@ svg {
     display: none;
 }
 
+.modal-links[hidden] {
+    display: none;
+}
+
 .modal-detail-block {
     display: grid;
     gap: 0.45rem;
@@ -933,6 +953,59 @@ svg {
     margin: 0;
     padding-left: 1rem;
     color: var(--muted);
+}
+
+.modal-links {
+    display: grid;
+    gap: 0.55rem;
+    border-top: 1px solid var(--line);
+    padding-top: 0.85rem;
+}
+
+.modal-links h3 {
+    margin: 0;
+    color: var(--amber);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+}
+
+.modal-link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+}
+
+.modal-link-list a {
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.45rem 0.7rem;
+    color: var(--paper);
+    background: rgba(246, 240, 223, 0.05);
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-decoration: none;
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+.modal-link-list a:hover,
+.modal-link-list a:focus-visible {
+    border-color: var(--mint);
+    background: rgba(120, 228, 191, 0.08);
+    outline: none;
+}
+
+.modal-link-list svg {
+    width: 15px;
+    height: 15px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2;
 }
 
 .modal-thumbs {
